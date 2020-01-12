@@ -6,6 +6,3 @@ listener "tcp" {
 storage "file" {
  path = "/home/vault/data"
 }
-
-
-
