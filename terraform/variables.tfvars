@@ -1,0 +1,2 @@
+do_api_token = "INSERT_YOUR_API_TOKEN_HERE"
+image_id = "INSERT_YOUR_IMAGE_ID_HERE"

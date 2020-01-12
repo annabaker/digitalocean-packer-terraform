@@ -1,0 +1,36 @@
+{
+  "variables": {
+      "do_api_token": ""
+  },
+  "builders": [
+    {
+      "droplet_name": "vault",
+      "snapshot_name": "vault",
+      "type": "digitalocean",
+      "ssh_username": "root",
+      "api_token": "{{ user `do_api_token` }}",
+      "image": "ubuntu-18-04-x64",
+      "region": "nyc1",
+      "size": "1gb"
+    }],
+  "provisioners": [
+  {
+    "type": "shell",
+    "inline": [
+      "mkdir -p /home/vault/data"
+    ]
+  },
+    { "type": "file",
+      "source": "vault_configs/vault.service",
+      "destination": "/home/vault/vault.service"
+    },
+    { "type": "file",
+      "source": "vault_configs/vault.hcl",
+      "destination": "/home/vault/vault.hcl"
+    },
+    {
+      "type": "shell",
+      "script": "vault_configs/vault_install.sh"
+    }
+  ]
+}
